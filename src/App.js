@@ -1,10 +1,11 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Iframe from 'react-iframe';
 
 function App() {
 	const [recipe, setRecipe] = useState();
+	const [ingredients, setIngredients] = useState([]);
 
 	const generateRecipe = () => {
 		axios
@@ -19,6 +20,30 @@ function App() {
 
 		console.log(recipe);
 	};
+
+	const listIngredients = () => {
+		setIngredients([]);
+		//Only Ever 20
+		for (let i = 1; i <= 20; i++) {
+			if (recipe[`strIngredient${i}`]) {
+				setIngredients((prevIngredients) => [
+					...prevIngredients,
+					`${recipe[`strIngredient${i}`]} - ${
+						recipe[`strMeasure${i}`]
+					}`,
+				]);
+			} else {
+				console.log(ingredients);
+				break;
+			}
+		}
+	};
+
+	useEffect(() => {
+		if (recipe) {
+			listIngredients();
+		}
+	}, [recipe]);
 
 	return (
 		<div className='App'>
@@ -37,7 +62,9 @@ function App() {
 					<div className='about'></div>
 					<div className='ingredients'></div>
 					<Iframe
-						url={recipe.strYoutube}
+						url={`https://www.youtube.com/embed/${recipe.strYoutube.slice(
+							-11
+						)}`}
 						width='640px'
 						height='320px'
 					/>
