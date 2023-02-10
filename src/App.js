@@ -5,7 +5,7 @@ import Iframe from 'react-iframe';
 
 function App() {
 	const [recipe, setRecipe] = useState();
-	const [ingredients, setIngredients] = useState([]);
+	const [ingredients, setIngredients] = useState();
 
 	const generateRecipe = () => {
 		axios
@@ -48,19 +48,30 @@ function App() {
 	return (
 		<div className='App'>
 			<div className='Header'>
+				<h1>Get Your Meal Here</h1>
 				<button onClick={generateRecipe}> Generate Recipe </button>
 			</div>
-			{recipe ? (
+			{ingredients ? (
 				<div className='Body'>
-					<img
-						src={recipe.strMealThumb}
-						alt='Recipe Image'
-						className='recipeImage'
-					/>
-					<div className='tags'>//Category //Area //Tags</div>
-					<h1 className='title'></h1>
-					<div className='about'></div>
-					<div className='ingredients'></div>
+					<div className='Top'>
+						<img
+							src={recipe.strMealThumb}
+							alt='Recipe Image'
+							className='recipeImage'
+						/>
+						<div className='tags'>//Category //Area //Tags</div>
+					</div>
+					<h1 className='title'>{recipe.strMeal}</h1>
+					<div className='Middle'>
+						<h2>Instructions</h2>
+						<div className='about'>{recipe.strInstructions}</div>
+						<h2>Ingredients</h2>
+						<ul className='ingredients'>
+							{ingredients.map((ingredient) => (
+								<li>{ingredient}</li>
+							))}
+						</ul>
+					</div>
 					<Iframe
 						url={`https://www.youtube.com/embed/${recipe.strYoutube.slice(
 							-11
