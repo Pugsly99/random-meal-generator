@@ -46,7 +46,7 @@
 }
 
 button {
-	margin: 3rem;
+	margin-top: 3rem;
 	size: 2rem;
 	color: white;
 	background-color: grey;
@@ -58,13 +58,17 @@ img {
 
 .instructions {
 	border: #282c34;
-	position: relative;
 	margin-left: 25%;
+	margin-right: 25%;
 }
 
 .ingredients {
 	border: #282c34;
 	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+	list-style-position: inside;
 }
 
 iframe {

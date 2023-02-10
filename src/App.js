@@ -59,19 +59,22 @@ function App() {
 							alt='Recipe Image'
 							className='recipeImage'
 						/>
-						<div className='tags'>//Category //Area //Tags</div>
+						<div className='category'>
+							<strong>Category:</strong> {recipe.strCategory}
+						</div>
+						<div className='area'>
+							<strong>Area:</strong> {recipe.strArea}
+						</div>
 					</div>
 					<h1 className='title'>{recipe.strMeal}</h1>
-					<div className='Middle'>
-						<h2>Instructions</h2>
-						<div className='about'>{recipe.strInstructions}</div>
-						<h2>Ingredients</h2>
-						<ul className='ingredients'>
-							{ingredients.map((ingredient) => (
-								<li>{ingredient}</li>
-							))}
-						</ul>
-					</div>
+					<h2>Instructions</h2>
+					<div className='instructions'>{recipe.strInstructions}</div>
+					<h2>Ingredients</h2>
+					<ul className='ingredients'>
+						{ingredients.map((ingredient) => (
+							<li>{ingredient}</li>
+						))}
+					</ul>
 					<Iframe
 						url={`https://www.youtube.com/embed/${recipe.strYoutube.slice(
 							-11
